@@ -9,11 +9,13 @@
     <link rel="apple-touch-icon" sizes="180x180" href="https://cdn-icons-png.flaticon.com/512/9027/9027706.png">
     <link rel="icon" type="image/png" sizes="192x192" href="https://cdn-icons-png.flaticon.com/512/9027/9027706.png">
     <link rel="icon" type="image/png" sizes="32x32" href="https://cdn-icons-png.flaticon.com/512/9027/9027706.png">
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Coiny&family=Montserrat:wght@700&family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Calistoga&display=swap" rel="stylesheet">
+
 <style>
     @font-face {
       font-family: 'Qatar2022-Book';
@@ -25,6 +27,8 @@
     :root {
       --qa-font-family: 'Qatar2022-Book', sans-serif;
     }
+
+
     /* --- Base screen styles --- */
     body {
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Default font for the rest of the page */
@@ -33,20 +37,20 @@
         font-size: 17px; /* Base font size */
     }
     .page-container {
-        max-width: 270mm; /* Max width, like A4 landscape */
+        max-width: 1200px; /* Increased max width for better desktop view */
         margin: 20px auto; /* Center the container */
         background-color: white; /* White background for content */
-        box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Subtle shadow */
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1); /* Enhanced shadow */
         padding: 30px; /* Padding inside container */
         overflow-x: hidden; /* Prevent horizontal scroll on page */
-        border-radius: 8px; /* Added rounded corners */
+        border-radius: 12px; /* Increased rounded corners */
     }
     .header {
         background: none; /* No background color */
-        color: #1f2937; /* Dark text color */
+        color: #1f2937; /* Dark text color for icon if needed */
         border-radius: 0; /* No rounding */
-        padding: 20px 0; /* Vertical padding */
-        margin-bottom: 15px; /* Space below header */
+        padding: 25px 0; /* Increased vertical padding */
+        margin-bottom: 20px; /* Increased space below header */
         text-align: center; /* Center header text */
         display: flex; /* Use flexbox for alignment */
         align-items: center; /* Center items vertically */
@@ -58,20 +62,32 @@
         height: 80px; /* Image size increased */
         width: 80px;  /* Image size increased */
         object-fit: contain; /* Ensure icon fits */
+        border-radius: 50%; /* Make icon circular */
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Add subtle shadow to icon */
     }
+    .header h1 {
+        font-family: 'Coiny', cursive; /* Font changed to Coiny */
+        font-size: 3.5rem; /* Font size increased */
+        margin-bottom: 0; /* Remove default margin */
+        color: #1f2937; /* Original dark grey/blue color restored */
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.1); /* Subtle text shadow */
+        position: relative;
+        top: 5px; /* Adjust vertical alignment if needed */
+    }
+
     /* --- Styles for Lecture Tabs --- */
     #lecture-tabs-wrapper {
         position: relative; /* Context for absolute positioning for fades */
         padding: 0 10px; /* Add some padding to the wrapper so fades don't touch edge */
         border-bottom: 2px solid #e5e7eb; /* Bottom border added */
-        margin-bottom: 15px; /* Adjusted bottom margin */
+        margin-bottom: 25px; /* Adjusted bottom margin */
         padding-bottom: 15px; /* Added bottom padding */
     }
     #lecture-tabs {
         display: flex;
         flex-wrap: nowrap;
-        justify-content: flex-start;
-        gap: 12px;
+        justify-content: flex-start; /* Align tabs to the start */
+        gap: 12px; /* Space between tabs */
         padding: 5px 2px; /* Minimal horizontal padding */
         overflow-x: auto; /* Enable horizontal scrolling */
         -webkit-overflow-scrolling: touch; /* Smooth scrolling on touch devices */
@@ -81,40 +97,68 @@
      #lecture-tabs::-webkit-scrollbar {
         display: none; /* Hide scrollbar (Chrome, Safari, Opera) */
     }
-    #lecture-tabs button.lecture-tab-btn { /* Specific class for tab buttons */
-        padding: 8px 18px;
-        border: 1px solid #d1d5db;
-        background-color: #f9fafb;
-        border-radius: 9999px; /* Pill shape */
-        cursor: pointer;
-        transition: color 0.2s, background-color 0.2s, border-color 0.2s, box-shadow 0.2s, transform 0.15s ease-out;
-        color: #4b5563;
-        font-size: 0.95em;
-        font-weight: 500;
-        box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-        white-space: nowrap; /* Prevent text wrapping */
-        flex-shrink: 0; /* Prevent shrinking */
-        transform: translateY(0);
+    /* --- Updated Lecture Tab Button Styles --- */
+    #lecture-tabs button.lecture-tab-btn {
+        /* Base */
+        display: inline-flex; /* Use flex for potential icon alignment */
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        white-space: nowrap;
+        border-radius: 9999px; /* rounded-full */
+        border-width: 1px;
+        text-align: center;
+        font-weight: 500; /* font-medium */
+        font-size: 0.875rem; /* text-sm */
+        padding: 0.5rem 1rem; /* py-2 px-4 */
+        box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05); /* shadow-sm */
+        /* Transitions and Transforms */
+        transition: color 0.3s ease-out, background-color 0.3s ease-out, border-color 0.3s ease-out, box-shadow 0.3s ease-out, transform 0.3s ease-out, filter 0.3s ease-out; /* transition-all duration-300 ease-out */
+        transform: scale(1); /* Base scale */
+        /* Default State (Inactive) */
+        background-color: white;
+        border-color: #cbd5e1; /* border-slate-300 */
+        color: #334155; /* text-slate-700 */
     }
-    #lecture-tabs button.lecture-tab-btn:hover {
-        color: #1f2937;
-        background-color: #f3f4f6;
-        border-color: #9ca3af;
-        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-        transform: translateY(-1px); /* Slight lift on hover */
+    /* Responsive Font Size & Padding */
+    @media (min-width: 768px) { /* md: breakpoint */
+        #lecture-tabs button.lecture-tab-btn {
+            font-size: 1rem; /* md:text-base */
+            padding: 0.5rem 1.25rem; /* md:py-2 md:px-5 */
+        }
     }
+     /* Hover State (Inactive) */
+    #lecture-tabs button.lecture-tab-btn:not(.active):hover {
+        background-color: #f8fafc; /* hover:bg-slate-50 */
+        border-color: #94a3b8; /* hover:border-slate-400 */
+        color: #0f172a; /* hover:text-slate-900 */
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); /* hover:shadow-lg (Tailwind's shadow-lg) */
+        transform: translateY(-2px); /* Approximation of hover:-translate-y-0.5 */
+    }
+     /* Active State */
     #lecture-tabs button.lecture-tab-btn.active {
-        color: #ffffff;
-        background: linear-gradient(135deg, #3b82f6, #1d4ed8); /* Gradient background */
-        border-color: #1d4ed8;
-        font-weight: 600;
-        box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.15), 0 5px 8px 0 rgba(0, 0, 0, 0.1), 0 1px 12px 0 rgba(0, 0, 0, 0.08); /* Enhanced shadow */
-        transform: translateY(0); /* Reset transform */
+        background: linear-gradient(to right, #3b82f6, #4f46e5); /* bg-gradient-to-r from-blue-500 to-indigo-600 */
+        border-color: #4338ca; /* border-indigo-700 */
+        color: white;
+        font-weight: 600; /* font-semibold */
+        box-shadow: none; /* Explicitly remove shadow */
+        transform: scale(1); /* Ensure active state starts at normal scale */
     }
-
-    /* --- Scroll Arrow Buttons - REMOVED --- */
-    /* .scroll-btn styles removed */
-    /* .scroll-btn-visible styles removed */
+     /* Hover State (Active) */
+     #lecture-tabs button.lecture-tab-btn.active:hover {
+        box-shadow: none; /* Keep shadow removed on hover */
+        filter: brightness(1.1); /* hover:brightness-110 */
+        transform: translateY(-2px); /* Keep slight lift on hover */
+     }
+     /* Active (Pressed) State - applies to both active and inactive */
+     #lecture-tabs button.lecture-tab-btn:active {
+        transform: scale(0.98); /* active:scale-[0.98] */
+     }
+     /* Focus State */
+     #lecture-tabs button.lecture-tab-btn:focus {
+        outline: none; /* focus:outline-none */
+     }
+     /* Focus Visible State REMOVED */
 
 
     /* --- Overflow Indicators (Gradient Fades) --- */
@@ -122,265 +166,304 @@
     #lecture-tabs-wrapper::after {
         content: '';
         position: absolute;
-        /* Adjust top/bottom to account for the wrapper's bottom padding */
         top: 0;
-        bottom: 15px; /* Stop fade above the bottom padding */
-        width: 40px; /* Width of the fade effect */
-        pointer-events: none; /* Allow clicks through the fade */
-        z-index: 2; /* Above tabs, below potential future elements */
-        opacity: 0; /* Hidden by default */
-        transition: opacity 0.2s ease-in-out; /* Smooth fade transition */
+        bottom: 15px;
+        width: 50px;
+        pointer-events: none;
+        z-index: 2;
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
     }
-    #lecture-tabs-wrapper::before { /* Left fade */
-        left: 0; /* Position at the left edge of the wrapper */
-        background: linear-gradient(to right, white 30%, rgba(255,255,255,0));
+    #lecture-tabs-wrapper::before {
+        left: 0;
+        background: linear-gradient(to right, white 40%, rgba(255,255,255,0));
     }
-    #lecture-tabs-wrapper::after { /* Right fade */
-        right: 0; /* Position at the right edge of the wrapper */
-        background: linear-gradient(to left, white 30%, rgba(255,255,255,0));
+    #lecture-tabs-wrapper::after {
+        right: 0;
+        background: linear-gradient(to left, white 40%, rgba(255,255,255,0));
     }
-    /* Classes to control fade visibility based on scroll position */
     #lecture-tabs-wrapper.show-fade-left::before { opacity: 1; }
     #lecture-tabs-wrapper.show-fade-right::after { opacity: 1; }
 
 
-    /* --- Content area styling & Animation --- */
+    /* --- Content area styling --- */
     #dynamic-question-area {
-        /* Adjusted margin-top to account for wrapper's new bottom margin/padding */
-        margin-top: 0; /* Let the wrapper's margin/padding handle the space */
-        position: relative; /* Needed for absolute positioning of children */
-        min-height: 300px; /* Ensure space for content */
-        overflow: hidden; /* Clip content during transition */
+        margin-top: 0;
+        position: relative;
+        min-height: 300px;
+        /* overflow: hidden; */ /* Allow potential overflow during animation */
     }
+    /* Lecture content container appears instantly */
     .lecture-content {
-        opacity: 0;
-        transform: translateY(10px); /* Start slightly lower */
-        transition: opacity 0.3s ease-out, transform 0.3s ease-out;
-        position: absolute; /* Position for transition */
-        top: 0;
-        left: 0;
+        opacity: 1; /* Set to 1 initially, visibility controlled by presence in DOM */
+        background-color: white;
         width: 100%;
-        background-color: white; /* Ensure background during transition */
-        pointer-events: none; /* Prevent interaction while hidden */
     }
+    /* .visible class might not be strictly needed anymore for container opacity */
     .lecture-content.visible {
-        opacity: 1;
-        transform: translateY(0); /* Move to final position */
-        position: relative; /* Take up space in layout */
-        pointer-events: auto; /* Allow interaction */
+        position: relative;
+        pointer-events: auto;
     }
+
+    /* --- Staggered fade-in animation for individual questions --- */
+    @keyframes staggerFadeIn {
+        from { opacity: 0; transform: translateY(15px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    /* Class added by JS to trigger animation */
+    .stagger-fade-in {
+        animation: staggerFadeIn 0.7s ease-out forwards; /* Updated duration */
+        /* animation-delay is set via inline style in JS */
+    }
+    /* Class added during HTML generation to identify elements to animate */
+    .question-animate {
+       opacity: 0; /* Start hidden before animation begins */
+    }
+
 
     /* --- Section/Question Styles --- */
     .section-title {
+        display: flex; /* Added for icon alignment */
+        align-items: center; /* Added for icon alignment */
         background: linear-gradient(135deg, #3b82f6, #1e40af); /* Gradient background */
         color: white;
-        border-radius: 8px; /* Rounded corners */
-        padding: 10px 20px;
-        margin: 20px 0;
+        border-radius: 12px; /* UPDATED border radius */
+        padding: 8px 20px; /* UPDATED padding */
+        margin: 25px 0 20px 0; /* Adjusted margins */
         page-break-after: avoid !important; /* Print */
+        /* Section titles do not animate */
+        opacity: 1;
+        transform: translateY(0);
     }
-    .question {
-        background-color: #f3f4f6; /* Light grey background */
-        border-left: 4px solid #3b82f6; /* Blue accent border */
-        padding: 15px;
-        margin: 15px 0;
-        border-radius: 4px; /* Slightly rounded corners */
+    .section-title h2 {
+        font-size: 1.4rem; /* Increased font size */
+        font-weight: normal; /* Calistoga has built-in weight */
+        font-family: 'Calistoga', serif; /* Apply Calistoga font */
+        margin: 0; /* Remove default margin */
+        flex-grow: 1; /* Allow text to take remaining space */
+    }
+    .section-title i { /* Style for icons within section title */
+        margin-right: 0.6rem; /* Space between icon and text (approx mr-2) */
+        font-size: 1.2em; /* Adjust icon size slightly */
+    }
+    .question { /* Base styles for question card */
+        background-color: #f8fafc; /* Slightly lighter grey background */
+        border-left: 5px solid #3b82f6; /* Blue accent border */
+        padding: 18px; /* Increased padding */
+        margin: 20px 0; /* Increased margin */
+        border-radius: 5px; /* Updated border radius */
+        box-shadow: 0 1px 3px rgba(0,0,0,0.05); /* Subtle shadow */
     }
     .question p.font-semibold {
         font-family: var(--qa-font-family); /* Use variable font */
         font-weight: 600;
-        margin-bottom: 8px;
-        color: red; /* Question text color set to red */
+        margin-bottom: 10px; /* Increased space */
+        color: #dc2626; /* Keep question text color red */
+        font-size: 1.05em; /* Slightly larger question text */
+        line-height: 1.5; /* Improved line spacing */
     }
 
     /* --- Explanation/Answer Styles --- */
     .explanation {
         font-family: var(--qa-font-family); /* Use variable font */
-        background-color: #d1fae5; /* Light green background */
-        border-left: 4px solid #34d399; /* Green accent border */
+        background-color: #ecfdf5; /* Lighter green background */
+        border-left: 5px solid #10b981; /* Green accent border */
         padding: 15px;
-        border-radius: 6px; /* Rounded corners */
+        border-radius: 8px; /* Rounded corners for explanation box */
         page-break-before: avoid !important; /* Print */
-        margin-top: 5px; /* Space above explanation */
+        margin-top: 10px; /* Space above explanation */
+        box-shadow: inset 0 1px 2px rgba(0,0,0,0.05); /* Inner shadow */
     }
     .explanation p {
         page-break-inside: avoid !important; /* Print */
         widows: 3 !important; /* Print */
         orphans: 3 !important; /* Print */
-        font-size: 15px;
-        color: #333; /* Default text color */
+        font-size: 14px; /* UPDATED font size */
+        color: #374151; /* Darker grey text color */
+        line-height: 1.6; /* Improved line spacing */
     }
      .explanation p strong {
-        color: #1f2937; /* Darker text for emphasis */
+        color: #111827; /* Even darker text for emphasis */
         font-weight: bold;
      }
     .written-answer-label {
         font-family: var(--qa-font-family); /* Use variable font */
         font-weight: bold;
         color: #0d9488; /* Teal color */
-        margin-bottom: 4px;
-        font-size: 1.05em;
+        margin-bottom: 6px; /* Increased space */
+        font-size: 1.1em; /* Larger label */
     }
     .written-explanation {
         font-family: var(--qa-font-family); /* Use variable font */
         background-color: #f0fdfa; /* Very light teal background */
         border: 1px solid #99f6e4; /* Light teal border */
-        padding: 15px;
-        border-radius: 8px; /* Rounded corners */
+        padding: 18px; /* Increased padding */
+        border-radius: 8px; /* Rounded corners for written explanation box */
         page-break-before: avoid !important; /* Print */
-        margin-top: 5px; /* Space above explanation */
+        margin-top: 8px; /* Space above explanation */
+        box-shadow: inset 0 1px 2px rgba(0,0,0,0.04); /* Subtle inner shadow */
     }
     .written-explanation p {
         page-break-inside: avoid !important; /* Print */
         widows: 3 !important; /* Print */
         orphans: 3 !important; /* Print */
-        font-size: 15px;
-        color: #333; /* Default text color */
+        font-size: 14px; /* UPDATED font size */
+        color: #374151; /* Darker grey text color */
+        line-height: 1.6; /* Improved line spacing */
     }
-    .written-explanation strong { font-weight: bold; }
-    .written-explanation em { font-style: italic; }
+    .written-explanation strong { font-weight: bold; color: #111827; }
+    .written-explanation em { font-style: italic; color: #0d9488; }
     .mcq-option {
         font-family: var(--qa-font-family); /* Use variable font */
-        padding: 5px 10px;
-        margin: 5px 0;
+        padding: 8px 12px; /* Adjusted padding */
+        margin: 6px 0; /* Adjusted margin */
         border-radius: 6px; /* Rounded corners */
         page-break-inside: avoid !important; /* Print */
         border: 1px solid #e5e7eb; /* Light grey border */
         background-color: #ffffff; /* White background */
-        font-size: 15px;
+        font-size: 14px; /* UPDATED font size */
+        transition: background-color 0.2s, border-color 0.2s; /* Smooth hover effect */
+    }
+    .mcq-option:hover {
+        background-color: #f9fafb; /* Slight background change on hover */
+        border-color: #d1d5db;
     }
     .written-question-container {
-        margin-bottom: 10px; /* Space below written question text */
+        margin-bottom: 12px; /* Increased space below written question text */
     }
-    .header h1 {
-        font-family: 'Coiny', cursive; /* Font changed to Coiny */
-        font-size: 3rem; /* Font size increased */
-        margin-bottom: 0; /* Remove default margin */
-        position: relative; /* <<< تمت إضافة position relative >>> */
-        top: 7px; /* <<< تمت إضافة قيمة top لدفع النص للأسفل قليلاً >>> */
-    }
-    .section-title h2 { font-size: 1.5rem; }
 
     /* --- Show Answer Button Styles --- */
     .show-answer-btn {
-        display: inline-flex; /* Align icon and text */
+        display: inline-flex;
         align-items: center;
-        padding: 5px 12px;
-        background-color: #60a5fa; /* Lighter blue */
+        justify-content: center;
+        padding: 5px 10px; /* UPDATED padding */
+        background: linear-gradient(135deg, #60a5fa, #3b82f6);
         color: white;
         border: none;
-        border-radius: 4px;
+        border-radius: 12px; /* UPDATED border radius */
         cursor: pointer;
-        font-size: 0.85em;
-        font-weight: 500;
-        transition: background-color 0.2s ease-in-out, transform 0.1s ease;
-        margin-top: 10px; /* Space above button */
+        font-size: 0.9em;
+        font-weight: 600;
+        transition: background 0.2s ease-in-out, transform 0.1s ease, box-shadow 0.2s ease;
+        margin-top: 12px;
+        min-width: 110px; /* Keep min-width or adjust if needed */
+        text-align: center;
     }
     .show-answer-btn:hover {
-        background-color: #3b82f6; /* Darker blue on hover */
+        background: linear-gradient(135deg, #3b82f6, #2563eb);
+        box-shadow: 0 3px 6px rgba(59, 130, 246, 0.3);
     }
      .show-answer-btn:active {
-         transform: scale(0.98); /* Slight shrink on click */
+         transform: scale(0.97);
+         box-shadow: 0 1px 2px rgba(59, 130, 246, 0.15);
      }
-    .show-answer-btn i {
-        margin-left: 5px;
-        transition: transform 0.3s ease-in-out; /* Smooth icon rotation */
-    }
-    .show-answer-btn.active i {
-        transform: rotate(180deg); /* Rotate icon when active */
-    }
 
-    /* --- Answer Container Styles --- */
+    /* --- أنيميشن حاوية الإجابة (الشبكة) --- */
+    /* --- Answer container (grid) animation --- */
     .answer-container {
-        max-height: 0; /* Initially hidden */
-        overflow: hidden; /* Hide content */
-        opacity: 0; /* Initially transparent */
-        transition: max-height 0.4s ease-out, opacity 0.3s ease-in 0s, margin-top 0.4s ease-out;
-        margin-top: 0; /* No margin when hidden */
+      display: grid;
+      grid-template-rows: 0fr;
+      opacity: 0;
+      margin-top: 0;
+      transition: grid-template-rows 0.4s ease-in-out, opacity 0.3s ease-in-out 0.1s, margin-top 0.4s ease-in-out;
     }
     .answer-container.answer-visible {
-        max-height: 600px; /* Allow space for content (adjust as needed) */
-        opacity: 1; /* Fade in */
-        margin-top: 10px; /* Add margin when visible */
-        transition: max-height 0.4s ease-in, opacity 0.2s ease-out 0.2s, margin-top 0.4s ease-in; /* Adjusted transition timings */
+      grid-template-rows: 1fr;
+      opacity: 1;
+      margin-top: 0.75rem;
+      transition: grid-template-rows 0.4s ease-in-out, opacity 0.3s ease-in-out, margin-top 0.4s ease-in-out;
     }
-
+    .answer-container > div {
+      overflow: hidden;
+    }
 
     /* --- Mobile-Specific Styles --- */
     @media (max-width: 768px) {
         body {
-            font-size: 14px; /* Smaller base font */
-            -webkit-text-size-adjust: 100%; /* Prevent iOS font scaling */
+            font-size: 15px;
+            -webkit-text-size-adjust: 100%;
         }
         .page-container {
-            padding: 15px; /* Less padding */
-            margin: 10px auto; /* Less margin */
-            border-radius: 6px; /* Smaller rounding */
+            padding: 15px;
+            margin: 10px auto;
+            border-radius: 8px;
         }
         .header {
-            padding: 12px 0; /* Less padding */
-            gap: 10px; /* Less gap */
+            padding: 15px 0;
+            gap: 10px;
+            margin-bottom: 15px;
         }
         .header h1 {
-            font-size: 2rem; /* Header text size for mobile */
-            position: static; /* <<< إعادة تعيين الوضع للهاتف >>> */
-            top: auto;      /* <<< إعادة تعيين الإزاحة للهاتف >>> */
+            font-size: 2.5rem;
+            top: 3px;
         }
         .header-img {
-             height: 60px; /* Image size for mobile */
-             width: 60px;  /* Image size for mobile */
+             height: 60px;
+             width: 60px;
         }
-        /* Adjust tab styles for mobile */
         #lecture-tabs-wrapper {
-             padding: 0 5px; /* Less padding on wrapper */
-             padding-bottom: 10px; /* Adjust bottom padding for mobile */
-             margin-bottom: 10px; /* Adjust bottom margin for mobile */
+             padding: 0 5px;
+             padding-bottom: 10px;
+             margin-bottom: 15px;
         }
         #lecture-tabs {
-             gap: 8px; /* Less gap between tabs */
-             padding: 5px 1px; /* Minimal horizontal padding */
+             gap: 8px;
+             padding: 5px 1px;
         }
         #lecture-tabs button.lecture-tab-btn {
-            font-size: 0.85em; /* Smaller tab text */
-            padding: 6px 12px; /* Smaller tab padding */
+            font-size: 0.875rem; /* text-sm */
+            padding: 0.5rem 1rem; /* py-2 px-4 */
         }
-        /* Adjust fade width for mobile */
+
         #lecture-tabs-wrapper::before,
         #lecture-tabs-wrapper::after {
-            width: 35px; /* Adjust fade width if needed */
-            bottom: 10px; /* Adjust fade bottom position */
+            width: 40px;
+            bottom: 10px;
         }
         .section-title {
-            padding: 7px 12px; /* Less padding */
-            border-radius: 6px; /* Smaller rounding */
+            padding: 3px 15px; /* UPDATED padding */
+            border-radius: 12px; /* UPDATED border radius */
+            margin: 20px 0 15px 0;
         }
         .section-title h2 {
-            font-size: 1.1rem; /* Smaller section title */
+            font-size: 1.2rem; /* Adjust size if needed for mobile */
+        }
+        .section-title i {
+             font-size: 1.1em; /* Adjust icon size */
+             margin-right: 0.5rem; /* Adjust spacing */
         }
         .question {
-            padding: 10px; /* Less padding */
-            margin: 10px 0; /* Less margin */
-            border-radius: 3px; /* Smaller rounding */
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px; /* Keep consistent rounded corners on mobile */
+        }
+        .question p.font-semibold {
+            font-size: 1em;
         }
         .explanation, .written-explanation {
-            padding: 10px; /* Less padding */
-            border-radius: 6px; /* Smaller rounding */
+            padding: 12px;
+            border-radius: 6px; /* Keep explanation boxes rounded */
         }
         .mcq-option {
-            font-size: 0.88em; /* Smaller option text */
-            padding: 4px 8px; /* Less padding */
-            border-radius: 4px; /* Smaller rounding */
+            font-size: 0.85em; /* UPDATED font size */
+            padding: 6px 10px; /* Adjusted padding */
+            border-radius: 4px;
         }
          .explanation p, .written-explanation p {
-            font-size: 0.88em; /* Smaller answer text */
+            font-size: 0.85em; /* UPDATED font size */
          }
          .written-answer-label {
-             font-size: 1em; /* Adjust label size */
+             font-size: 1em;
          }
          .show-answer-btn {
-             font-size: 0.8em; /* Smaller button text */
-             padding: 4px 10px; /* Smaller button padding */
-             border-radius: 3px;
+             font-size: 0.85em; /* Keep font size or adjust if needed */
+             padding: 5px 10px; /* UPDATED padding */
+             border-radius: 12px; /* UPDATED border radius */
+             min-width: 100px; /* Adjust min-width if needed */
+         }
+         .answer-container.answer-visible {
+             margin-top: 0.6rem;
          }
     }
 
@@ -388,18 +471,28 @@
     /* --- Print-Specific Rules --- */
     @media print {
         body { font-size: 10pt; color: black !important; line-height: 1.3; background-color: white !important; font-family: 'Times New Roman', Times, serif; }
-        :root { --qa-font-family: 'Times New Roman', Times, serif; } /* Override font for print */
+        :root { --qa-font-family: 'Times New Roman', Times, serif; }
 
         .page-container { max-width: 100%; box-shadow: none; padding: 10mm; margin: 0; border: none; overflow: visible !important; min-height: 0 !important; border-radius: 0; }
         .header { background: none !important; color: black !important; border: none; text-align: center; display: block; padding: 10px 0; margin-bottom: 1em; border-bottom: 1px solid #ccc; border-radius: 0; }
-        #lecture-tabs-wrapper, #lecture-tabs, .show-answer-btn { display: none !important; } /* Hide tabs, buttons */
-        #dynamic-question-area { overflow: visible !important; min-height: 0 !important; margin-top: 1em !important; } /* Adjust margin for print */
+        #lecture-tabs-wrapper, #lecture-tabs, .show-answer-btn { display: none !important; }
+        #dynamic-question-area { overflow: visible !important; min-height: 0 !important; margin-top: 1em !important; }
         .lecture-content, .lecture-content.visible { display: block !important; opacity: 1 !important; transform: none !important; position: relative !important; pointer-events: auto !important; page-break-before: auto; height: auto !important; overflow: visible !important; background-color: white !important; }
-        .answer-container { /* Ensure answers are visible for print */
+        /* Ensure questions are visible for print */
+        .question-animate {
+            opacity: 1 !important;
+            animation: none !important; /* Disable animation for print */
+        }
+        .answer-container {
+            display: block !important;
+            grid-template-rows: auto !important;
             max-height: none !important;
             opacity: 1 !important;
             overflow: visible !important;
             margin-top: 10px !important;
+        }
+        .answer-container > div {
+            overflow: visible !important;
         }
         .written-answer-label {
              font-weight: bold;
@@ -407,7 +500,7 @@
              margin-bottom: 2px !important;
              font-size: 10pt !important;
         }
-        .explanation, .written-explanation { /* Simpler styling for print */
+        .explanation, .written-explanation {
              background-color: #f0f0f0 !important;
              border: 1px solid #cccccc !important;
              color: black !important;
@@ -417,20 +510,29 @@
              page-break-before: avoid;
              border-left: none !important;
         }
-        .section-title { background: none !important; color: black !important; border: none; text-align: left; margin-top: 1.5em; margin-bottom: 0.5em; padding: 5px 0; border-bottom: 1px solid #ccc; border-radius: 0; page-break-after: avoid !important; border-left: none !important; }
-        .header-img { display: none !important; } /* Hide image for print */
-        .header h1 { font-size: 18pt; font-weight: normal !important; font-family: 'Times New Roman', Times, serif !important; /* Override font for print */ }
-        .section-title h2 { font-size: 14pt; font-weight: bold; }
+        .section-title { background: none !important; color: black !important; border: none; text-align: left; margin-top: 1.5em; margin-bottom: 0.5em; padding: 5px 0; border-bottom: 1px solid #ccc; border-radius: 0; page-break-after: avoid !important; border-left: none !important; display: block !important; /* Override flex for print */ }
+        .section-title i { display: none !important; } /* Hide icons for print */
+        .header-img { display: none !important; }
+        .header h1 {
+             font-size: 18pt;
+             font-weight: normal !important;
+             font-family: 'Times New Roman', Times, serif !important;
+             color: black !important;
+        }
+        .section-title h2 {
+             font-size: 14pt;
+             font-weight: bold; /* Keep bold for print */
+             font-family: 'Times New Roman', Times, serif !important; /* Override font for print */
+        }
         .question { background-color: #ffffff !important; border-left: 3px solid #cccccc !important; box-shadow: none; padding: 8px; margin: 8px 0; border-radius: 0; page-break-inside: avoid; }
-        /* Change question text color for print if needed */
-        .question p.font-semibold { color: black !important; } /* Make question text black for print */
+        .question p.font-semibold { color: black !important; }
         .explanation p, .written-explanation p, .mcq-option {
              color: black !important;
              page-break-inside: avoid;
-             font-size: 9.5pt !important;
+             font-size: 9.5pt !important; /* Keep print font size */
         }
         .explanation p strong { color: black !important; font-weight: bold; }
-        a, a:visited { color: black !important; text-decoration: none !important; } /* Ensure links are black */
+        a, a:visited { color: black !important; text-decoration: none !important; }
     }
 </style>
 </head>
@@ -440,7 +542,7 @@
             <img src="https://cdn-icons-png.flaticon.com/512/9027/9027706.png"
                  alt="Digestive System Icon"
                  class="header-img"
-                 onerror="this.onerror=null; this.src='https://placehold.co/75x75/ffffff/1f2937?text=Icon';"> <h1 class="text-3xl font-bold">GIT</h1>
+                 onerror="this.onerror=null; this.src='https://placehold.co/80x80/e0e0e0/333333?text=Icon';"> <h1 class="text-3xl font-bold">GIT</h1>
         </div>
 
         <div id="lecture-tabs-wrapper">
@@ -457,7 +559,6 @@
 
     <script>
         // --- LECTURE DATA ---
-        // Contains arrays of Multiple Choice Questions (mcqs) and Written Questions (written) for each lecture.
         const lecturesData = [
             // LECTURE 1: Anatomy
             {
@@ -528,7 +629,7 @@
                 ]
             },
             // LECTURE 3: Anatomy
-             {
+            {
                 id: 'l3',
                 name: 'L3 Anatomy',
                 mcqs: [
@@ -562,7 +663,7 @@
                 ]
             },
              // LECTURE 4: Physiology
-             {
+            {
                  id: 'l4',
                  name: 'L4 Physiology',
                  mcqs: [
@@ -1395,13 +1496,13 @@
       { q: "5. Critique the potential for a vaccine that targets the schistosomulum stage to reduce both transmission and pathology.", a: "Benefits: Prevents maturation into adults, reduces egg burden and pathology.\nChallenges: Immune evasion by schistosomula, antigenic variation, need for strong Th1 immunity without excessive pathology, delivery in resource‑poor settings." }
     ]
   }
+
         ];
 
         // --- DOM Elements ---
         const tabsWrapper = document.getElementById('lecture-tabs-wrapper');
         const tabsContainer = document.getElementById('lecture-tabs');
         const questionsArea = document.getElementById('dynamic-question-area');
-        // Scroll button variables removed
 
         // --- Functions ---
 
@@ -1414,31 +1515,33 @@
             // Find the lecture data based on the provided ID
             const lecture = lecturesData.find(lec => lec.id === lectureId);
             if (!lecture) {
-                // Display an error if the lecture data isn't found
                 questionsArea.innerHTML = '<p class="text-red-600 p-4">Error: Lecture data not found.</p>';
-                return null; // Return null to indicate failure
+                return null;
             }
 
-            // Start building the HTML string for the lecture content
             let htmlContentInner = '';
 
             // Add MCQs section if available
             if (lecture.mcqs && lecture.mcqs.length > 0) {
-                htmlContentInner += `<div class="section-title"><h2 class="text-xl font-bold">${lecture.name} - MCQs:</h2></div>`;
+                // Section title appears instantly (no animation classes/style)
+                // Added icon
+                htmlContentInner += `<div class="section-title"><i class="fas fa-list-check"></i><h2 class="text-xl font-bold">${lecture.name} - MCQs:</h2></div>`;
                 lecture.mcqs.forEach((mcq, index) => {
-                    const answerId = `answer-mcq-${lecture.id}-${index}`; // Unique ID for the answer container
-                    // Generate HTML for MCQ options
-                    const optionsHtml = mcq.o.map((option, i) => `<div class="mcq-option">${String.fromCharCode(97 + i)}) ${option}</div>`).join('');
-                    // Append the HTML for this MCQ
+                    const answerId = `answer-mcq-${lecture.id}-${index}`;
+                    const optionsHtml = mcq.o.map((option, i) =>
+                        `<div class="mcq-option">${String.fromCharCode(97 + i)}) ${option.replace(/</g, "&lt;").replace(/>/g, "&gt;")}</div>`
+                    ).join('');
+                    // Add .question-animate class for targeting question animation
                     htmlContentInner += `
-                        <div class="question">
-                            <p class="font-semibold">${mcq.q}</p>
+                        <div class="question question-animate">
+                            <p class="font-semibold">${mcq.q.replace(/</g, "&lt;").replace(/>/g, "&gt;")}</p>
                             <div class="mt-2 mb-2">${optionsHtml}</div>
-                            <button type="button" class="show-answer-btn" data-target-id="${answerId}">
-                                Show Answer <i class="fas fa-chevron-down ml-1"></i>
+                            <button type="button" class="show-answer-btn" data-target-id="${answerId}" aria-expanded="false" aria-controls="${answerId}">
+                                Show Answer
                             </button>
-                            <div id="${answerId}" class="answer-container">
-                                <div class="explanation"><p><strong>Answer:</strong> ${mcq.a}</p></div>
+                            <div id="${answerId}" class="answer-container" role="region" aria-hidden="true">
+                                <div> <div class="explanation"><p><strong>Answer:</strong> ${mcq.a.replace(/</g, "&lt;").replace(/>/g, "&gt;")}</p></div>
+                                </div>
                             </div>
                         </div>`;
                 });
@@ -1446,123 +1549,106 @@
 
             // Add Written Questions section if available
             if (lecture.written && lecture.written.length > 0) {
-                htmlContentInner += `<div class="section-title mt-10"><h2 class="text-xl font-bold">${lecture.name} - Written Questions:</h2></div>`;
+                 // Section title appears instantly (no animation classes/style)
+                 // Changed icon to fa-pencil as a test
+                htmlContentInner += `<div class="section-title mt-10"><i class="fas fa-pencil"></i><h2 class="text-xl font-bold">${lecture.name} - Written Questions:</h2></div>`;
                 lecture.written.forEach((wq, index) => {
-                    const answerId = `answer-written-${lecture.id}-${index}`; // Unique ID for the answer container
-                    // Append the HTML for this written question
+                    const answerId = `answer-written-${lecture.id}-${index}`;
+                    // Add .question-animate class for targeting question animation
                     htmlContentInner += `
-                        <div class="question">
-                            <div class="written-question-container"><p class="font-semibold">${wq.q}</p></div>
-                            <button type="button" class="show-answer-btn" data-target-id="${answerId}">
-                                Show Answer <i class="fas fa-chevron-down ml-1"></i>
+                        <div class="question question-animate">
+                            <div class="written-question-container"><p class="font-semibold">${wq.q.replace(/</g, "&lt;").replace(/>/g, "&gt;")}</p></div>
+                            <button type="button" class="show-answer-btn" data-target-id="${answerId}" aria-expanded="false" aria-controls="${answerId}">
+                                Show Answer
                             </button>
-                            <div id="${answerId}" class="answer-container">
-                                <p class="written-answer-label">Answer:</p>
-                                <div class="written-explanation"><p>${wq.a}</p></div>
+                            <div id="${answerId}" class="answer-container" role="region" aria-hidden="true">
+                                <div> <p class="written-answer-label">Answer:</p>
+                                    <div class="written-explanation"><p>${wq.a}</p></div>
+                                </div>
                             </div>
                         </div>`;
                 });
             }
 
-            // Create a wrapper div for the content to manage transitions
+            // Create a wrapper div for the content
             const contentWrapper = document.createElement('div');
-            contentWrapper.className = 'lecture-content'; // Class for styling and transitions
-            contentWrapper.innerHTML = htmlContentInner; // Set the generated HTML
-            questionsArea.appendChild(contentWrapper); // Add the new content to the DOM
-            return contentWrapper; // Return the created element
+            // Add 'visible' class immediately so container is ready
+            contentWrapper.className = 'lecture-content visible';
+            contentWrapper.innerHTML = htmlContentInner;
+            questionsArea.appendChild(contentWrapper);
+            return contentWrapper;
         }
+
+
+        /**
+         * Applies staggered animation to question elements.
+         * @param {HTMLElement} container - The container element holding the questions.
+         */
+        function applyStaggeredAnimation(container) {
+            // Select only question elements for animation
+            const questionsToAnimate = container.querySelectorAll('.question.question-animate');
+            const baseDelay = 70; // التأخير الأساسي بالمللي ثانية بين كل سؤال (ms)
+
+            questionsToAnimate.forEach((el, index) => {
+                const delay = index * baseDelay;
+                // Set inline style for animation delay
+                el.style.animationDelay = `${delay}ms`;
+                // Add the class that triggers the animation
+                el.classList.add('stagger-fade-in');
+            });
+        }
+
 
         /**
          * Handles switching between lecture tabs, including animations.
          * @param {string} targetLectureId - The ID of the lecture tab to switch to.
          */
         function switchTab(targetLectureId) {
-            // Find the currently visible content and active tab button
-            const currentVisible = questionsArea.querySelector('.lecture-content.visible');
-            const currentlyActiveButton = tabsContainer.querySelector('button.lecture-tab-btn.active'); // Use specific class
-            const targetButton = tabsContainer.querySelector(`button.lecture-tab-btn[data-lecture-id="${targetLectureId}"]`); // Use specific class
+            // const currentVisible = questionsArea.querySelector('.lecture-content.visible'); // We don't need the old one anymore for animation
+            const currentlyActiveButton = tabsContainer.querySelector('button.lecture-tab-btn.active');
+            const targetButton = tabsContainer.querySelector(`button.lecture-tab-btn[data-lecture-id="${targetLectureId}"]`);
 
-            // Prevent re-rendering if the same tab is clicked and content is already loaded
-            if (currentlyActiveButton === targetButton && currentVisible) {
-                 // Check if the content for this lecture ID is already present (basic check)
-                 const firstAnswerId = `answer-mcq-${targetLectureId}-0`;
-                 const firstWrittenId = `answer-written-${targetLectureId}-0`;
-                 if (currentVisible.querySelector(`#${firstAnswerId}`) || currentVisible.querySelector(`#${firstWrittenId}`)) {
-                     // Content seems to match, do nothing
-                     return;
-                 }
+            if (!targetButton || targetButton === currentlyActiveButton) {
+                return; // Do nothing if the button doesn't exist or is already active
             }
 
-            // Deactivate all tab buttons
-            tabsContainer.querySelectorAll('button.lecture-tab-btn').forEach(button => { // Use specific class
-                button.classList.remove('active');
-            });
-            // Activate the target tab button
-            if (targetButton) {
-                targetButton.classList.add('active');
-                // Scroll the active tab into the center of the view smoothly
-                targetButton.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+            // Update active button state
+            if (currentlyActiveButton) {
+                 currentlyActiveButton.classList.remove('active');
+                 currentlyActiveButton.setAttribute('aria-selected', 'false');
             }
+            targetButton.classList.add('active');
+            targetButton.setAttribute('aria-selected', 'true');
 
-            // Function to render the new content and make it visible
-            const renderAndShowNew = () => {
-                questionsArea.innerHTML = ''; // Clear previous content
-                const newContent = renderLecture(targetLectureId); // Render the new lecture
-                if (newContent) {
-                    // Force reflow before adding 'visible' class for transition to work
-                    void newContent.offsetWidth;
-                    // Use requestAnimationFrame to ensure the 'visible' class is added in the next frame
-                    requestAnimationFrame(() => {
-                        newContent.classList.add('visible');
-                    });
-                }
-            };
+            // Scroll the active tab into view
+            targetButton.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
 
-            // Handle the transition: fade out old content, then fade in new content
-            if (currentVisible) {
-                currentVisible.classList.remove('visible'); // Start fade-out transition
-                // Listen for the end of the fade-out transition
-                currentVisible.addEventListener('transitionend', renderAndShowNew, { once: true });
-                // Fallback: If transitionend doesn't fire (e.g., element removed too quickly), trigger after a delay
-                 setTimeout(() => {
-                     // Check if the old content is still in the DOM and not visible
-                     if (questionsArea.contains(currentVisible) && !currentVisible.classList.contains('visible')) {
-                         console.warn("Tab switch transitionend fallback triggered.");
-                         renderAndShowNew(); // Manually trigger the render/show
-                     }
-                 }, 350); // Timeout slightly longer than the transition duration
-            } else {
-                // If no content is currently visible, just render and show the new one
-                renderAndShowNew();
+            // --- Simplified Content Switching ---
+            // Directly render new content and apply animation to its children
+            questionsArea.innerHTML = ''; // Clear previous content instantly
+            const newContentContainer = renderLecture(targetLectureId); // Render new content
+            if (newContentContainer) {
+                // Apply staggered animation to the children *after* rendering
+                requestAnimationFrame(() => {
+                     applyStaggeredAnimation(newContentContainer);
+                });
             }
+            // --- End Simplified Content Switching ---
         }
 
         /**
          * Checks the scroll state of the tabs container to show/hide scroll fade indicators.
          */
         function checkTabOverflow() {
-            // Ensure necessary elements exist
             if (!tabsContainer || !tabsWrapper) return;
-
-            const scrollLeft = tabsContainer.scrollLeft; // Current horizontal scroll position
-            const scrollWidth = tabsContainer.scrollWidth; // Total width of the scrollable content
-            const clientWidth = tabsContainer.clientWidth; // Visible width of the container
-            const tolerance = 1; // Small tolerance for floating point comparisons
-
-            // Check and toggle visibility of the left fade
-            if (scrollLeft > tolerance) {
-                tabsWrapper.classList.add('show-fade-left'); // Show left fade
-            } else {
-                tabsWrapper.classList.remove('show-fade-left'); // Hide left fade
-            }
-
-            // Check and toggle visibility of the right fade
-            // Condition: Is there content scrolled out of view to the right?
-            if (scrollWidth - scrollLeft - clientWidth > tolerance) {
-                tabsWrapper.classList.add('show-fade-right'); // Show right fade
-            } else {
-                tabsWrapper.classList.remove('show-fade-right'); // Hide right fade
-            }
+            requestAnimationFrame(() => {
+                const scrollLeft = tabsContainer.scrollLeft;
+                const scrollWidth = tabsContainer.scrollWidth;
+                const clientWidth = tabsContainer.clientWidth;
+                const tolerance = 2;
+                tabsWrapper.classList.toggle('show-fade-left', scrollLeft > tolerance);
+                tabsWrapper.classList.toggle('show-fade-right', scrollWidth - scrollLeft - clientWidth > tolerance);
+            });
         }
 
 
@@ -1571,111 +1657,93 @@
          * Initializes the application: generates tabs, sets up event listeners, and renders the initial view.
          */
         function initializeApp() {
-            // Clear any existing tabs in case of re-initialization
             tabsContainer.innerHTML = '';
-            // Generate tab buttons dynamically from the lecturesData array
             lecturesData.forEach((lecture, index) => {
                 const button = document.createElement('button');
                 button.setAttribute('type', 'button');
-                button.classList.add('lecture-tab-btn'); // Add specific class for styling/selection
-                button.setAttribute('data-lecture-id', lecture.id); // Store lecture ID for switching
-                button.textContent = lecture.name; // Set button text
+                button.classList.add('lecture-tab-btn');
+                button.setAttribute('data-lecture-id', lecture.id);
+                button.textContent = lecture.name;
+                button.setAttribute('role', 'tab');
+                button.setAttribute('aria-controls', 'dynamic-question-area');
+                button.setAttribute('aria-selected', index === 0 ? 'true' : 'false');
                 if (index === 0) {
-                    // Activate the first tab by default
                     button.classList.add('active');
                 }
-                tabsContainer.appendChild(button); // Add the button to the tabs container
+                tabsContainer.appendChild(button);
             });
 
-            // --- Event Listeners ---
+            tabsContainer.setAttribute('role', 'tablist');
+            tabsContainer.setAttribute('aria-label', 'Lectures');
 
-            // Event listener for TAB switching (using event delegation on the container)
+            // --- Event Listeners ---
             tabsContainer.addEventListener('click', function(event) {
-                // Find the closest button ancestor with the specific class and data attribute
                 const button = event.target.closest('button.lecture-tab-btn[data-lecture-id]');
                 if (button) {
-                    // If a valid tab button was clicked, switch to that lecture
                     switchTab(button.getAttribute('data-lecture-id'));
                 }
             });
 
-            // Event listener for SHOW/HIDE ANSWER buttons (using event delegation on the questions area)
             questionsArea.addEventListener('click', function(event) {
-                // Find the closest ancestor button with the 'show-answer-btn' class
                 const button = event.target.closest('.show-answer-btn');
                 if (button) {
-                    const targetId = button.getAttribute('data-target-id'); // Get the ID of the answer container to toggle
+                    const targetId = button.getAttribute('data-target-id');
                     const targetContainer = document.getElementById(targetId);
                     if (targetContainer) {
-                        // Toggle the visibility class and the button's active state
                         const isVisible = targetContainer.classList.toggle('answer-visible');
                         button.classList.toggle('active');
-                        const icon = button.querySelector('i'); // Get the icon element
-
-                        // Update button text and icon based on visibility state
-                        if (isVisible) {
-                            button.firstChild.textContent = 'Hide Answer '; // Change text to "Hide"
-                            if(icon) { // Rotate icon up
-                                icon.classList.remove('fa-chevron-down');
-                                icon.classList.add('fa-chevron-up');
-                            }
-                        } else {
-                            button.firstChild.textContent = 'Show Answer '; // Change text back to "Show"
-                             if(icon) { // Rotate icon down
-                                icon.classList.remove('fa-chevron-up');
-                                icon.classList.add('fa-chevron-down');
-                             }
+                        button.setAttribute('aria-expanded', isVisible ? 'true' : 'false');
+                        targetContainer.setAttribute('aria-hidden', isVisible ? 'false' : 'true');
+                        const textNode = button.firstChild;
+                        if (textNode && textNode.nodeType === Node.TEXT_NODE) {
+                            textNode.textContent = isVisible ? 'Hide Answer' : 'Show Answer';
                         }
                     }
                 }
             });
 
-            // Event listeners for TAB SCROLL buttons - REMOVED
-
-
             // --- Initial Render ---
-            // Find the initially active button (should be the first one)
             const firstActiveButton = tabsContainer.querySelector('button.lecture-tab-btn.active');
-            let initialContent = null;
+            let initialContentContainer = null;
             if (firstActiveButton) {
-                // If an active button is found, get its lecture ID and render it
                 const firstLectureId = firstActiveButton.getAttribute('data-lecture-id');
-                initialContent = renderLecture(firstLectureId);
+                initialContentContainer = renderLecture(firstLectureId);
             } else if (lecturesData.length > 0) {
-                // Fallback: If no button is active but data exists, render the first lecture
                 const firstLectureId = lecturesData[0].id;
-                initialContent = renderLecture(firstLectureId);
+                initialContentContainer = renderLecture(firstLectureId);
+                const firstButton = tabsContainer.querySelector('button.lecture-tab-btn');
+                if(firstButton) firstButton.classList.add('active');
             } else {
-                // If no lectures are available, display a message
-                questionsArea.innerHTML = '<p class="p-4">No lectures available.</p>';
+                questionsArea.innerHTML = '<p class="p-4 text-center text-gray-500">No lectures available.</p>';
             }
 
-            // Make the initial content visible immediately without transition
-            if (initialContent) {
-                 requestAnimationFrame(() => { // Use rAF for timing
-                     initialContent.style.transition = 'none'; // Temporarily disable transition
-                     initialContent.classList.add('visible');
-                     void initialContent.offsetWidth; // Force reflow
-                     // Re-enable transition shortly after
-                     setTimeout(() => { initialContent.style.transition = ''; }, 0);
+            // Apply initial animation after render
+            if (initialContentContainer) {
+                 requestAnimationFrame(() => {
+                    // Make container visible instantly (already has .visible class and opacity: 1 in CSS)
+                    // Apply staggered animation to children
+                    applyStaggeredAnimation(initialContentContainer);
                  });
             }
 
             // --- Overflow Check Logic ---
-            // Check tab overflow initially after a short delay to allow layout rendering
-            setTimeout(checkTabOverflow, 50);
-            // Re-check overflow when the tabs container is scrolled
-            tabsContainer.addEventListener('scroll', checkTabOverflow, { passive: true }); // Use passive listener for better scroll performance
-            // Re-check overflow when the window is resized
+            setTimeout(checkTabOverflow, 100);
+            tabsContainer.addEventListener('scroll', checkTabOverflow, { passive: true });
             window.addEventListener('resize', checkTabOverflow);
-            // Optional: Use ResizeObserver for more reliable container resize detection if needed
-            // const resizeObserver = new ResizeObserver(checkTabOverflow);
-            // resizeObserver.observe(tabsContainer);
-
+            if (typeof ResizeObserver !== 'undefined') {
+                const resizeObserver = new ResizeObserver(checkTabOverflow);
+                resizeObserver.observe(tabsContainer);
+                resizeObserver.observe(tabsWrapper);
+            } else {
+                window.addEventListener('resize', checkTabOverflow);
+            }
         }
 
-        // Run the initialization function once the DOM is fully loaded and parsed
-        document.addEventListener('DOMContentLoaded', initializeApp);
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initializeApp);
+        } else {
+            initializeApp();
+        }
 
     </script>
 
