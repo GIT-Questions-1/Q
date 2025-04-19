@@ -4,6 +4,7 @@ const urlsToCache = [
   '/',
   '/index.html',
   '/manifest.json'
+  '/script.js'
 ];
 
 // عند التثبيت: خزّن الملفات
