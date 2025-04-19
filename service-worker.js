@@ -1,37 +1,49 @@
-// اسم الكاش؛ غيّره إلى 'my-site-cache-v2' عندما تريد فرض إعادة تحميل الملفات
-const CACHE_NAME = 'my-site-cache-v1';
+const CACHE_NAME = 'git-site-cache-v1';
 
-// أضف هنا كل الملفات التي تحتاجها أوفلاين
 const urlsToCache = [
-  '/',               // الصفحة الرئيسية
-  '/index.html',     // ملف HTML الرئيسي
-  '/manifest.json'   // ملف التعريف
-  // إذا لديك ملفات CSS أو JS أخرى، أضفها هنا مثل '/styles.css'
+  '/',
+  '/index.html',
+  '/manifest.json'
 ];
 
+// عند التثبيت: خزّن الملفات
 self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(CACHE_NAME)
-      .then(cache => cache.addAll(urlsToCache))
+      .then(cache => {
+        return cache.addAll(urlsToCache);
+      })
   );
+  self.skipWaiting(); // لتفعيل الفورًا
 });
 
+// عند الطلب: جرب من الكاش، ثم من الشبكة
 self.addEventListener('fetch', event => {
   event.respondWith(
-    caches.match(event.request)
-      .then(response => response || fetch(event.request))
+    caches.match(event.request).then(response => {
+      return response || fetch(event.request).catch(() => {
+        // لو فشل fetch (مثل انقطاع الإنترنت)
+        if (event.request.destination === 'document') {
+          return caches.match('/index.html');
+        }
+      });
+    })
   );
 });
 
+// عند التفعيل: حذف الكاشات القديمة
 self.addEventListener('activate', event => {
-  const cacheWhitelist = [CACHE_NAME];
+  const cacheAllowlist = [CACHE_NAME];
   event.waitUntil(
-    caches.keys().then(keyList =>
-      Promise.all(keyList.map(key => {
-        if (!cacheWhitelist.includes(key)) {
-          return caches.delete(key);
-        }
-      }))
+    caches.keys().then(cacheNames =>
+      Promise.all(
+        cacheNames.map(cacheName => {
+          if (!cacheAllowlist.includes(cacheName)) {
+            return caches.delete(cacheName);
+          }
+        })
+      )
     )
   );
+  self.clients.claim();
 });
