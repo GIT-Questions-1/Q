@@ -769,42 +769,20 @@
     // --- Theme Management ---
     // Run this script immediately after <style> to apply theme before rendering body
     (function() {
-        const LOCAL_STORAGE_KEY = 'gitQuestionsTheme'; // Use a unique key
+        // Force light theme on initial load
+        const initialTheme = 'light';
+        const root = document.documentElement;
+        root.classList.remove('dark'); // Ensure dark is removed if it was somehow set
+        // No need to explicitly add 'light' class as it's the default without 'dark'
 
-        function getInitialTheme() {
-            try {
-                const persistedColorPreference = localStorage.getItem(LOCAL_STORAGE_KEY);
-                if (persistedColorPreference) {
-                    return persistedColorPreference;
-                }
-            } catch (e) {
-                console.warn("Could not read theme from local storage", e);
-            }
-
-            try {
-                 const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-                 if (mediaQuery.matches) {
-                     return 'dark';
-                 }
-            } catch (e) {
-                 console.warn("Could not read prefers-color-scheme", e);
-            }
-
-            return 'light'; // Default to light
-        }
-
-        function applyInitialTheme(theme) {
-            const root = document.documentElement;
-            if (theme === 'dark') {
-                root.classList.add('dark');
-            } else {
-                root.classList.remove('dark');
-            }
-            // Icon visibility will be handled after DOM is loaded
-        }
-
-        const initialTheme = getInitialTheme();
-        applyInitialTheme(initialTheme);
+        // We still save 'light' to storage so the toggle works correctly later
+        // if the user *had* a dark preference saved before this change.
+        const LOCAL_STORAGE_KEY = 'gitQuestionsTheme';
+         try {
+             localStorage.setItem(LOCAL_STORAGE_KEY, 'light');
+         } catch (e) {
+              console.warn("Could not save initial light theme to local storage", e);
+         }
     })();
 </script>
 </head>
