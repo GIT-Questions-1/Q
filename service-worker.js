@@ -1,6 +1,6 @@
 // service-worker.js
 
-const CACHE_NAME = 'git-questions-cache-v1'; // اسم فريد للكاش (غيّره إذا قمت بتحديثات كبيرة)
+const CACHE_NAME = 'git-questions-cache-v2'; // اسم فريد للكاش (غيّره إذا قمت بتحديثات كبيرة)
 const GITHUB_REPO_PATH = '/Q/'; // المسار الأساسي لمستودعك على GitHub Pages
 
 // قائمة بالملفات والموارد الأساسية التي يجب تخزينها للعمل دون اتصال
